@@ -1,0 +1,62 @@
+/* Estilos globales */
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+body {
+    background-color: #94B2C9;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.show {
+    opacity: 1 !important;
+}
+
+.bubble_filler {
+    position: absolute;
+    width: auto;
+    height: auto;
+    animation: float ease-in-out infinite;
+    text-align: center;
+}
+
+.filling {
+    position: relative;
+    display: flex;
+    left: -12.5%;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px); /* Subir 20px */
+    }
+    100% {
+        transform: translateY(0); /* Volver a la posición original */
+    }
+}
+
+
+@keyframes bounce2 {
+    0%, 25%, 80%, 100% {
+        transform: translateY(0) rotateZ(0deg); /* Posición inicial, sin rotación */
+    }
+    40% {
+        transform: translateY(-150%) rotateZ(-360deg); /* Salto hacia arriba y rotación hacia atrás */
+    }
+    52% {
+        transform: rotateZ(0deg); /* Salto hacia arriba y rotación hacia atrás */
+    }
+    60% {
+        transform: translateY(-7.5px) ; /* Comienza a bajar, con rotación hacia atrás */
+    }
+}
+
+@font-face {
+    font-family: 'Bubbly';
+    src: url('/fonts/ShineBubbleDeco-MVKJx.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
