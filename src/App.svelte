@@ -65,6 +65,7 @@ const tecnicas = {
           {#if obra.Estado == "Removida"}
             <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
           {/if}
+        </div>
       </a>
       
     {/each}
@@ -87,19 +88,32 @@ const tecnicas = {
   }
 
   #my-wrapper {
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-width: 1280px;
+    padding:0% !important;
+  }
 
+  .flourish-embed {
+    margin: auto;
+    width: 90vw;
   }
 
   .card {
+    width: 50%;
+    height: 50%;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
-    margin: 5%;
+    margin-top: 50%;
+    margin-bottom: 50%; 
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .obra {

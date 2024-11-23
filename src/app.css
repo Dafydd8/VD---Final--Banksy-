@@ -4,9 +4,9 @@ body {
 }
 
 .fl-scrolly-step {
-    background-color: rgba(0, 0, 0, 0.75);
+    
 }
 
-.story-furniture {
-    visibility: hidden;
+.flourish-credit {
+    visibility: hidden !important;
 }
