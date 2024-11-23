@@ -175,10 +175,6 @@
     transition: opacity 1s ease;
   }
 
-  .page.visible {
-    opacity: 1 !important;
-  }
-
   #my-wrapper {
     background: none;
     display: flex;

@@ -4,6 +4,10 @@ body {
     margin: 0;
 }
 
+.page.visible {
+    opacity: 1 !important;
+}
+
 .fl-scrolly-step {
     padding: 0px !important;
 }
