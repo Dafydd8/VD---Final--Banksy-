@@ -4,9 +4,30 @@ body {
 }
 
 .fl-scrolly-step {
-    
+    padding: 0px !important;
 }
 
 .flourish-credit {
     visibility: hidden !important;
+    height: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.flourish-credit a{
+    height: 0px !important;
+}
+
+.flourish-credit img{
+    height: 0px !important;
+}
+
+.flourish-credit span{
+    height: 0px !important;
+}
+
+@font-face {
+    font-family: 'PaintCans';
+    src: url('/fonts/PaintCans.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }

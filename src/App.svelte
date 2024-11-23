@@ -60,23 +60,26 @@
 </script>
 
 <main>
-  <section id="header">
+  <section id="header" class="page">
     <h1 id="main_title">
       Finding Banksy
     </h1>
   </section>
 
+  <section class="page">
+    <img src="/images/snape.png" alt="snape" style="max-height:50vh"/>
+    <div class="text-container">
+      <p>Qué onda maestro? Soy el moderfokin Sneip y vamo a buscar a Banksy</p>
+    </div>  
+  </section>
+
   <div id="my-wrapper">
-    <!-- Reemplazar el ID de ejemplo por el de la story propia -->
-    <div class="flourish-embed" data-src="story/2730386" data-url="https://flo.uri.sh/story/2730386/embed" data-height="100vh">
-      
-      <!---<script src="https://public.flourish.studio/resources/embed.js"></script>-->
+    <div class="flourish-embed" data-src="story/2727202" data-url="https://flo.uri.sh/story/2727202/embed" data-height="100vh">
+    
     </div>
-  
-    <!-- Iteramos sobre las distintas slides del componente de Flourish -->
     {#each main_obras as obra, index}
-      <a class="card" href={"#story/2730386/slide-" + (index + 1)}>
-        <p style="position:relative">{obra.Titulo} {cant_splash(parseInt(obra.Valor))}</p>
+      <a class="card" href={"#story/2727202/slide-" + (index + 1)}>
+        <h3 style="position:relative">{obra.Titulo}</h3>
         <div class="obra">
           <img src="/images/{tematicas[obra.Tematica]}" alt="{obra.Tematica}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
           <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
@@ -93,7 +96,7 @@
 
 <style>
   
-  #header {
+  .page {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -101,17 +104,20 @@
     align-items: center;
   }
 
-  #header h1{
+  h1, h3{
     color: #ffffff;
+    font-family: 'PaintCans', sans-serif;
   }
 
   #my-wrapper {
+    background: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     max-width: 1280px;
     padding:0% !important;
+    margin-bottom: 0px !important;
   }
 
   .flourish-embed {
@@ -132,6 +138,7 @@
     margin-bottom: 50%; 
     margin-left: auto;
     margin-right: auto;
+    border-radius: 20px;
   }
 
   .obra {
@@ -156,6 +163,18 @@
   .tecnica {
     position: relative;
     width: 50%;
+  }
+
+  .text-container {
+    position: relative;
+    background-color: rgba(100, 100, 100, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  p {
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
   }
 
 </style>
