@@ -3,7 +3,7 @@
   import * as d3 from "d3"
   import { onMount } from "svelte"
   import { parse } from "papaparse";
-  import obras from "/src/data/Datos_Banksy_corregido.csv"
+  import obras_raw from "/src/data/Datos_Banksy_corregido.csv?raw"
   import main_obras_raw from "/src/data/main_obras.csv?raw"; // Importa el archivo como texto
 
   const options = {
@@ -11,13 +11,19 @@
     header: true,   // Opcional: Indica si el CSV tiene encabezados
   };
 
-  const processCSV = () => {
+  const processCSV = (raw) => {
     const parsedData = parse(main_obras_raw, options);
     console.log(parsedData.data); // Aquí tienes los datos procesados
     return parsedData.data;
   };
 
-  const main_obras = processCSV();
+  const main_obras = processCSV(main_obras_raw);
+  const obras = processCSV(obras_raw);
+  
+  const valores = [];
+  for (let i = 0; i < main_obras.length; i++) {
+    valores.push(parseInt(main_obras[i].Valor));
+  }
 
   const tematicas = {
     "Violencia": "globo_ok.png",
@@ -33,6 +39,12 @@
     "Pintura mural": "yellow",
     "Instalación": "green"
   }
+
+  let cant_splash = d3
+    .scaleLinear()
+    .domain([d3.min(valores), d3.max(valores)])
+    .range([1, 4])
+
 
   function loadFlourishScrolly() {
     const script = document.createElement('script')
@@ -64,10 +76,10 @@
     <!-- Iteramos sobre las distintas slides del componente de Flourish -->
     {#each main_obras as obra, index}
       <a class="card" href={"#story/2730386/slide-" + (index + 1)}>
-        <p style="position:relative">{obra.Titulo}</p>
+        <p style="position:relative">{obra.Titulo} {cant_splash(parseInt(obra.Valor))}</p>
         <div class="obra">
           <img src="/images/{tematicas[obra.Tematica]}" alt="{obra.Tematica}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
-          <img src="/images/1_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
+          <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
           {#if obra.Estado == "Removida"}
             <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
           {/if}
