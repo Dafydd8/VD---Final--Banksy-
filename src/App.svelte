@@ -1,31 +1,38 @@
 <script>
 
-import obras from "/src/data/Datos_Banksy_corregido.csv"
-import main_obras from "/src/data/main_obras.csv"
-import * as d3 from "d3"
-import { onMount } from "svelte"
+  import * as d3 from "d3"
+  import { onMount } from "svelte"
+  import { parse } from "papaparse";
+  import obras from "/src/data/Datos_Banksy_corregido.csv"
+  import main_obras_raw from "/src/data/main_obras.csv?raw"; // Importa el archivo como texto
 
-let obra1 = obras[0];
-let valores = [];
+  const options = {
+    delimiter: ";", // Configura el delimitador como punto y coma
+    header: true,   // Opcional: Indica si el CSV tiene encabezados
+  };
 
-for (let i = 0; i < obras.length; i++) {
-  valores.push(parseInt(obras[i].Valor));
-}
+  const processCSV = () => {
+    const parsedData = parse(main_obras_raw, options);
+    console.log(parsedData.data); // Aquí tienes los datos procesados
+    return parsedData.data;
+  };
 
-const tematicas = {
-  "Violencia": "globo_ok.png",
-  "Justicia social": "ramo.png",
-  "Política": "monito.png",
-  "Capitalismo": "rata_ok.png",
-  "Medio ambiente": "flor_ok.png",
-}
+  const main_obras = processCSV();
 
-const tecnicas = {
-  "Plantilla (stencil)": "orange",
-  "Pintura sobre lienzo": "red",
-  "Pintura mural": "yellow",
-  "Instalación": "green"
-}
+  const tematicas = {
+    "Violencia": "globo_ok.png",
+    "Justicia social": "ramo.png",
+    "Política": "monito.png",
+    "Capitalismo": "rata_ok.png",
+    "Medio ambiente": "flor_ok.png",
+  }
+
+  const tecnicas = {
+    "Plantilla (stencil)": "orange",
+    "Pintura sobre lienzo": "red",
+    "Pintura mural": "yellow",
+    "Instalación": "green"
+  }
 
   function loadFlourishScrolly() {
     const script = document.createElement('script')
@@ -34,7 +41,6 @@ const tecnicas = {
     script.onload = () => initFlourishScrolly()
     document.body.appendChild(script)
   }
-
 
   onMount(() => {
     loadFlourishScrolly()
