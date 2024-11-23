@@ -3,7 +3,7 @@
   import * as d3 from "d3"
   import { onMount } from "svelte"
   import { parse } from "papaparse";
-  import obras_raw from "/src/data/Datos_Banksy_corregido.csv?raw"
+  import obras_raw from "/src/data/Datos_Banksy.csv?raw"
   import main_obras_raw from "/src/data/main_obras.csv?raw"; // Importa el archivo como texto
 
   const options = {
@@ -13,7 +13,6 @@
 
   const processCSV = (raw) => {
     const parsedData = parse(main_obras_raw, options);
-    console.log(parsedData.data); // Aquí tienes los datos procesados
     return parsedData.data;
   };
 
@@ -45,7 +44,6 @@
     .domain([d3.min(valores), d3.max(valores)])
     .range([1, 4])
 
-
   function loadFlourishScrolly() {
     const script = document.createElement('script')
     script.src = "https://cdn.flourish.rocks/flourish-scrolly-v3.1.0.min.js"
@@ -54,8 +52,72 @@
     document.body.appendChild(script)
   }
 
+  let currentPage = 0; // Índice de la página actual
+  const totalPages = 3; // Número total de páginas
+  let isScrolling = false; // Evita desplazamientos repetidos mientras la animación está en curso
+
+  const handleWheel = (event) => {
+    if (isScrolling) return; // Salir si ya estamos desplazándonos
+
+    const newPage =
+      event.deltaY > 0
+        ? Math.min(currentPage + 1, totalPages - 1) // Avanza si hay más páginas
+        : Math.max(currentPage - 1, 0); // Retrocede si no estamos en la primera
+
+    if (newPage !== currentPage) {
+      currentPage = newPage;
+      console.log("Voy a ir a:", currentPage);
+      scrollToPage(currentPage);
+    }
+  };
+
+  const scrollToPage = (page) => {
+    isScrolling = true; // Bloquear más scrolls
+    /*window.removeEventListener("wheel", handleWheel);*/
+    window.scrollTo({
+      top: page * window.innerHeight,
+      behavior: "instant",
+    });
+    // Liberar bloqueo después de la animación (duración típica de `smooth`)
+    setTimeout(() => {
+      isScrolling = false;
+      /*window.addEventListener("wheel", handleWheel);*/
+    }, 350);
+  };
+
+
   onMount(() => {
+    console.log("Página cargada");
     loadFlourishScrolly()
+
+    window.addEventListener("wheel", handleWheel);
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log("bananas");
+            entry.target.classList.add("visible");
+          }else{
+            entry.target.classList.remove("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.1, // La sección debe estar al menos un 10% visible para activarse
+      }
+    );
+
+    // Selecciona todas las secciones con la clase 'fade-in'
+    const elements = document.querySelectorAll(".page");
+    console.log(elements);
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+      window.removeEventListener("wheel", handleWheel);
+    };
+
   });
 </script>
 
@@ -70,6 +132,13 @@
     <img src="/images/snape.png" alt="snape" style="max-height:50vh"/>
     <div class="text-container">
       <p>Qué onda maestro? Soy el moderfokin Sneip y vamo a buscar a Banksy</p>
+    </div>  
+  </section>
+
+  <section class="page">
+    <img src="/images/snape.png" alt="snape" style="max-height:50vh"/>
+    <div class="text-container">
+      <p>jujuuuu</p>
     </div>  
   </section>
 
@@ -95,18 +164,19 @@
 </main>
 
 <style>
-  
   .page {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    scroll-snap-align: start; /* Para suavizar la navegación si el usuario hace scroll manual */
+    opacity: 0;
+    transition: opacity 1s ease;
   }
 
-  h1, h3{
-    color: #ffffff;
-    font-family: 'PaintCans', sans-serif;
+  .page.visible {
+    opacity: 1 !important;
   }
 
   #my-wrapper {
@@ -170,6 +240,12 @@
     background-color: rgba(100, 100, 100, 0.5);
     padding: 20px;
     border-radius: 20px;
+  }
+
+  
+  h1, h3{
+    color: #ffffff;
+    font-family: 'PaintCans', sans-serif;
   }
 
   p {

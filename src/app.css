@@ -1,6 +1,7 @@
 /* Estilos globales */
 body {
     background-color: black;
+    margin: 0;
 }
 
 .fl-scrolly-step {
