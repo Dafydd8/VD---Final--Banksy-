@@ -123,9 +123,9 @@
 
 <main>
   <section id="header" class="page">
-    <h1 id="main_title">
-      Finding Banksy
-    </h1>
+    <h1 id="main_title">Finding Banksy</h1>
+    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
+
   </section>
 
   <section class="page">
@@ -133,6 +133,7 @@
     <div class="text-container">
       <p>Qué onda maestro? Soy el moderfokin Sneip y vamo a buscar a Banksy</p>
     </div>  
+    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
   </section>
 
   <section class="page">
@@ -140,6 +141,7 @@
     <div class="text-container">
       <p>jujuuuu</p>
     </div>  
+    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
   </section>
 
   <div id="my-wrapper">
@@ -165,6 +167,7 @@
 
 <style>
   .page {
+    position: relative;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -236,6 +239,18 @@
     background-color: rgba(100, 100, 100, 0.5);
     padding: 20px;
     border-radius: 20px;
+  }
+
+  .flechas {
+    position: absolute;
+    bottom: 5%;
+    width: 5%;
+    animation: flash 1.5s ease infinite alternate;
+  }
+
+  @keyframes flash {
+    from { opacity: 1; }	
+    to { opacity: 0.2; }
   }
 
   
