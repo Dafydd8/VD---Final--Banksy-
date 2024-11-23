@@ -14,8 +14,8 @@ for (let i = 0; i < obras.length; i++) {
 
 const tematicas = {
   "Violencia": "globo_ok.png",
-  "Justicia social": "ramo_ok.png",
-  "Política": "mono_ok.png",
+  "Justicia social": "ramo.png",
+  "Política": "monito.png",
   "Capitalismo": "rata_ok.png",
   "Medio ambiente": "flor_ok.png",
 }
@@ -57,17 +57,16 @@ const tecnicas = {
   
     <!-- Iteramos sobre las distintas slides del componente de Flourish -->
     {#each main_obras as obra, index}
-      <div class="card">
-        <a href={"#story/2730386/slide-" + (index + 1)}></a>
+      <a class="card" href={"#story/2730386/slide-" + (index + 1)}>
+        <p style="position:relative">{obra.Titulo}</p>
         <div class="obra">
-          <p>{obra.Titulo}</p>
           <img src="/images/{tematicas[obra.Tematica]}" alt="{obra.Tematica}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
           <img src="/images/1_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
           {#if obra.Estado == "Removida"}
             <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
           {/if}
-        </div>
-      </div>
+      </a>
+      
     {/each}
   </div>
 
@@ -96,9 +95,10 @@ const tecnicas = {
   .card {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(125, 125, 125, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     margin: 5%;
   }
 
@@ -124,15 +124,6 @@ const tecnicas = {
   .tecnica {
     position: relative;
     width: 50%;
-  }
-
-  a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-  a:hover {
-    color: #535bf2;
   }
 
 </style>

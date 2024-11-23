@@ -4,7 +4,7 @@ body {
 }
 
 .fl-scrolly-step {
-    /*max-width: 300px !important;*/
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .story-furniture {
