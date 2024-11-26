@@ -57,7 +57,8 @@
   let isScrolling = false; // Evita desplazamientos repetidos mientras la animación está en curso
 
   const handleWheel = (event) => {
-    if (isScrolling) return; // Salir si ya estamos desplazándonos
+    let posScroll = window.scrollY + window.innerHeight;
+    if (isScrolling || posScroll > totalPages*window.innerHeight) return; // No hacer nada si ya estamos desplazando o estamos fuera de las primeras paginas
 
     const newPage =
       event.deltaY > 0
@@ -82,8 +83,23 @@
     setTimeout(() => {
       isScrolling = false;
       /*window.addEventListener("wheel", handleWheel);*/
-    }, 350);
+    }, 500);
   };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }else{
+          entry.target.classList.remove("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.1, // La sección debe estar al menos un 10% visible para activarse
+    }
+  );
 
 
   onMount(() => {
@@ -92,21 +108,7 @@
 
     window.addEventListener("wheel", handleWheel);
     
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            console.log("bananas");
-            entry.target.classList.add("visible");
-          }else{
-            entry.target.classList.remove("visible");
-          }
-        });
-      },
-      {
-        threshold: 0.1, // La sección debe estar al menos un 10% visible para activarse
-      }
-    );
+    
 
     // Selecciona todas las secciones con la clase 'fade-in'
     const elements = document.querySelectorAll(".page");
@@ -149,14 +151,18 @@
     
     </div>
     {#each main_obras as obra, index}
-      <a class="card" href={"#story/2727202/slide-" + (index + 1)}>
+      <a class="card" href={"#story/2727202/slide-" + (index + 1)} style="width:{window.innerWidth*0.75}px">
         <h3 style="position:relative">{obra.Titulo}</h3>
-        <div class="obra">
-          <img src="/images/{tematicas[obra.Tematica]}" alt="{obra.Tematica}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
-          <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
-          {#if obra.Estado == "Removida"}
-            <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
-          {/if}
+        <div class="obra_info" style="height: {window.innerHeight*0.5}px">
+          <div class="codificacion">
+            <img src="/images/{tematicas[obra.Tematica]}" alt="{obra.Tematica}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
+            <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
+            {#if obra.Estado == "Removida"}
+              <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
+            {/if}
+          </div>
+          <!---<p>{obra.Texto}</p>-->
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
       </a>
       
@@ -195,7 +201,6 @@
   }
 
   .card {
-    width: 50%;
     height: 50%;
     position: relative;
     display: flex;
@@ -210,17 +215,29 @@
     border-radius: 20px;
   }
 
-  .obra {
+  .card p {
+    position: relative;
+  }
+  
+  .codificacion {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
+  .obra_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+
   .tematica {
     position: absolute;
     z-index: 1;
-    width: 30%;
+    width: 45%;
   }
 
   .vandalizada {
@@ -231,7 +248,7 @@
 
   .tecnica {
     position: relative;
-    width: 50%;
+    width: 75%;
   }
 
   .text-container {
@@ -245,12 +262,12 @@
     position: absolute;
     bottom: 5%;
     width: 5%;
-    animation: flash 1.5s ease infinite alternate;
+    animation: flash 1s ease infinite alternate;
   }
 
   @keyframes flash {
     from { opacity: 1; }	
-    to { opacity: 0.2; }
+    to { opacity: 0.1; }
   }
 
   
