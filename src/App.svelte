@@ -243,30 +243,6 @@
     
   }
 
-  .head {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-  }
-
-  .img_icon {
-    position: relative;
-    width:30px;
-  }
-
-  .obra_img {
-    border-radius: 20px;
-    border: 2px solid white;
-    position: absolute;
-    visibility: hidden;
-    z-index: 3;
-  }
-
-  .img_icon:hover .obra_img {
-    visibility: visible;
-  }
-
   .tematica {
     position: absolute;
     z-index: 1;
