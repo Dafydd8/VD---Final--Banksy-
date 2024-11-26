@@ -147,13 +147,14 @@
   </section>
 
   <div id="my-wrapper">
-    <div class="flourish-embed" data-src="story/2727202" data-url="https://flo.uri.sh/story/2727202/embed" data-height="100vh">
-    
+    <div class="flourish-embed" data-src="story/2730386" data-url="https://flo.uri.sh/story/2730386/embed" data-height="100vh">
+      
     </div>
     {#each main_obras as obra, index}
-      <a class="card" href={"#story/2727202/slide-" + (index + 1)} style="width:{window.innerWidth*0.75}px">
+      <a class="card" href={"#story/2730386/slide-" + (index + 1)} style="width:{window.innerWidth*0.5}px">
         <h3 style="position:relative">{obra.Titulo}</h3>
-        <div class="obra_info" style="height: {window.innerHeight*0.5}px">
+        
+        <div class="obra_info">
           <div class="codificacion">
             <img src="/images/{tematicas[obra.Tematica]}" alt="{obra.Tematica}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
             <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
@@ -168,6 +169,10 @@
       
     {/each}
   </div>
+
+  <section class="page">
+    <h1>THE END</h1>
+  </section>
 
 </main>
 
@@ -217,9 +222,12 @@
 
   .card p {
     position: relative;
+    max-width: 50%;
   }
-  
+
   .codificacion {
+    width:30%;
+    aspect-ratio: 1/1;
     position: relative;
     display: flex;
     justify-content: center;
@@ -227,17 +235,42 @@
   }
 
   .obra_info {
+    position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    
   }
 
+  .head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .img_icon {
+    position: relative;
+    width:30px;
+  }
+
+  .obra_img {
+    border-radius: 20px;
+    border: 2px solid white;
+    position: absolute;
+    visibility: hidden;
+    z-index: 3;
+  }
+
+  .img_icon:hover .obra_img {
+    visibility: visible;
+  }
 
   .tematica {
     position: absolute;
     z-index: 1;
-    width: 45%;
+    width: 60%;
   }
 
   .vandalizada {
@@ -248,7 +281,7 @@
 
   .tecnica {
     position: relative;
-    width: 75%;
+    width: 100%;
   }
 
   .text-container {
