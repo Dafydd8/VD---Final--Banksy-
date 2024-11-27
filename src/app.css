@@ -12,6 +12,10 @@ body {
     padding: 0px !important;
 }
 
+.fl-scrolly-section {
+    background-color: rgba(0,0,0,0);
+}
+
 .flourish-credit {
     visibility: hidden !important;
     height: 0px !important;

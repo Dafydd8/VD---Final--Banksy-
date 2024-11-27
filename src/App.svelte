@@ -33,9 +33,9 @@
   }
 
   const tecnicas = {
-    "Plantilla (stencil)": "orange",
-    "Pintura sobre lienzo": "red",
-    "Pintura mural": "yellow",
+    "Stencil": "orange",
+    "Óleo sobre lienzo": "red",
+    "Mural": "yellow",
     "Instalación": "green"
   }
 
@@ -204,28 +204,35 @@
 
     </div>
     {#each main_obras as obra, index}
-      <a class="card detective_speech" href={"#story/2739950/slide-" + (index*2 + 1)} style="width:{window.innerWidth*0.5}px">
-        <img src="/images/detective_round.png" alt="detective" style="width:20%"/>
+      <a class="card detective_speech" href={"#story/2739950/slide-" + (index*3 + 1)}>
+        <img src="/images/detective_round.png" alt="detective" style="width:30%"/>
         <p>{textos_detective[index*2]}</p>
       </a>
 
-      <a class="card obra" href={"#story/2739950/slide-" + (index*2 + 2)} style="width:{window.innerWidth*0.5}px" id="{index*2+2}">
-        <h3 style="position:relative">{obra.Titulo}</h3>
+      <a class="card obra" href={"#story/2739950/slide-" + (index*3 + 2)} id="{index*2+2}">
         <div class="obra_info">
           <div class="codificacion">
-            <img src="/images/{tematicas[obra.Tematica]}" alt="{obra.Tematica}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
+            <img src="/images/{tematicas[obra.Motivo]}" alt="{obra.Motivo}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
             <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
             {#if obra.Estado == "Removida"}
               <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
             {/if}
           </div>
-          <!---<p>{obra.Texto}</p>-->
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <div style="width:75%">
+            <h3 style="position:relative; font-size:20px; text-align:center">{obra.Titulo}</h3>
+          </div>
         </div>
+        <img src="{obra.Imagen}" alt="imagen obra" class="obra_imagen" style="width:100%; border-radius:20px"/>
       </a>
+
+      <a class="card detective_speech" href={"#story/2739950/slide-" + (index*3 + 3)}>
+        <img src="/images/detective_round.png" alt="detective" style="width:30%"/>
+        <p>{textos_detective[index*2+1]} {obra.Texto}</p>
+      </a>
+
     {/each}
-    <a class="card detective_speech" href="#story/2739950/slide-{textos_detective.length}" style="width:{window.innerWidth*0.5}px">
-      <img src="/images/detective_round.png" alt="detective" style="width:20%"/>
+    <a class="card detective_speech" href="#story/2739950/slide-{(textos_detective.length-1)*3/2+1}">
+      <img src="/images/detective_round.png" alt="detective" style="width:30%"/>
       <p>{textos_detective[textos_detective.length-1]}</p>
     </a>
   </div>
@@ -278,20 +285,24 @@
     max-width: 100vw;
     padding:0% !important;
     margin-bottom: 0px !important;
+    background-color: rgba(0,0,0,0) !important;
   }
 
   .flourish-embed {
     margin: auto;
-    width: 100vw;
+    width: 50vw;
+    transform: translateX(-50%);
   }
 
   .card {
+    transform: translateX(62.5%);
     height: 50%;
+    width: 40vw;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(58, 58, 75, 1);
     margin-top: 50%;
     margin-bottom: 50%; 
     margin-left: auto;
@@ -302,6 +313,8 @@
   .detective_speech {
     flex-direction: row;
     gap: 30px;
+    justify-content: flex-start;
+    align-items: self-start;
   }
 
   .obra {
@@ -310,11 +323,12 @@
 
   .card p {
     position: relative;
-    max-width: 50%;
+    max-width: 70%;
+    text-align: justify;
   }
 
   .codificacion {
-    width:30%;
+    width:25% !important;
     aspect-ratio: 1/1;
     position: relative;
     display: flex;
@@ -323,10 +337,10 @@
   }
 
   .obra_info {
+    width:100%;
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
     
   }
