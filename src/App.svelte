@@ -39,6 +39,20 @@
     "Instalación": "green"
   }
 
+  const textos_detective = [
+    "Empecemos nuestra búsqueda. En este mapa podés ver todas las obras de Banksy de las que tenemos registro.",
+    "Las primeras obras de Banksy se encuentran en la que suponemos es su ciudad natal, Bristol.",
+    "Mmm... no encontramos nada muy revelador... sigamos nuestro viaje. Veamos otro de los lugares que mas frecuenta Banksy a la hora de pintar.",
+    "A nuestro artista misterioso le gusta Nueva York. Es la ciudad por excelencia para criticar al capitalismo salvaje.",
+    "Nada aún... es realmente sigiloso. No perdamos más tiempo y pasemos a nuestra siguiente pista.",
+    "Estamos en Jerusalén. Banksy aboga fuertemente por la paz y Medio Oriente es foco de muchas de sus obras que hacen alusión a esta causa.",
+    "No vimos nada, pero siento que estamos cerca. ¡Nos avisan que lo han visto en Australia! ¡Rápido, que no se escape!",
+    "Llegamos a Melbourne. A ver qué descubrimos...",
+    "Increíble, es realmente bueno escondiéndose. Tranquilo, aún nos queda un lugar más donde buscar.",
+    "Estamos en Disneyland, California. ¡Qué lugar para una obra de este estilo! Vaya que hace llegar su mensaje",
+    "No puedo creerlo, realmente no pudimos descubrirlo. Creo que la identidad de Banksy permanecerá en secreto por mucho tiempo más."
+  ]
+
   let cant_splash = d3
     .scaleLinear()
     .domain([d3.min(valores), d3.max(valores)])
@@ -149,7 +163,7 @@
   <section class="page">
     <img src="/images/detective_ground.png" alt="snape" style="max-height:50vh"/>
     <div class="text-container">
-      <p>Nuestra misión es tratar de descrubrir quién es y desenmascararlo. Para eso, vamos a seguir su rastro a través del mundo, a ver que podemos descubrir sobre él.</p>
+      <p>Nuestra misión es tratar de descrubrir quién es y desenmascararlo. Para eso, vamos a seguir su rastro a través del mundo, pasando por sus obras más emblemáticas. Veamos que podemos descubrir sobre él.</p>
     </div>  
     <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
   </section>
@@ -163,11 +177,11 @@
   </section>
 
   <div id="my-wrapper">
-    <div class="flourish-embed" data-src="story/2730386" data-url="https://flo.uri.sh/story/2730386/embed" data-height="100vh">
-      
+    <div class="flourish-embed" data-src="story/2739950" data-url="https://flo.uri.sh/story/2739950/embed" data-height="100vh">
+
     </div>
     {#each main_obras as obra, index}
-      <a class="card" href={"#story/2730386/slide-" + (index + 1)} style="width:{window.innerWidth*0.5}px">
+      <a class="card" href={"#story/2739950/slide-" + (index + 1)} style="width:{window.innerWidth*0.5}px">
         <h3 style="position:relative">{obra.Titulo}</h3>
         
         <div class="obra_info">
