@@ -138,7 +138,7 @@
         });
       },
       {
-        threshold: 0.50, // La sección debe estar al menos un 50% visible para activarse
+        threshold: 0.10, // La sección debe estar al menos un 50% visible para activarse
       }
     );
 
@@ -196,6 +196,7 @@
   <div id="my-wrapper">
     <div class="detective_dialogue">
       <img src="/images/detective_round.png" alt="detective" style="width:20%"/>
+      <p>Carlos Saul Menem</p>
     </div>
 
     <div class="flourish-embed" data-src="story/2739950" data-url="https://flo.uri.sh/story/2739950/embed" data-height="100vh">
@@ -245,6 +246,7 @@
   }
 
   .detective_dialogue {
+    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     display: flex;
     flex-direction: row;
@@ -263,14 +265,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 1280px;
+    max-width: 100vw;
     padding:0% !important;
     margin-bottom: 0px !important;
   }
 
   .flourish-embed {
     margin: auto;
-    width: 90vw;
+    width: 100vw;
   }
 
   .card {
