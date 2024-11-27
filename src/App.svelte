@@ -50,8 +50,10 @@
     "Llegamos a Melbourne. A ver qué descubrimos...",
     "Increíble, es realmente bueno escondiéndose. Tranquilo, aún nos queda un lugar más donde buscar.",
     "Estamos en Disneyland, California. ¡Qué lugar para una obra de este estilo! Vaya que hace llegar su mensaje",
-    "No puedo creerlo, realmente no pudimos descubrirlo. Creo que la identidad de Banksy permanecerá en secreto por mucho tiempo más."
+    "No puedo creerlo, realmente no pudimos descubrirlo. Creo que la identidad de Banksy permanecerá en secreto por mucho tiempo más. Mientras tanto, podés seguir aprendiendo sobre su arte."
   ]
+
+  let diapositiva_actual = 1;
 
   let cant_splash = d3
     .scaleLinear()
@@ -124,13 +126,12 @@
 
     const cards_obras = document.querySelectorAll(".obra");
     const dialogue = (document.querySelectorAll(".detective_dialogue"))[0];
-    console.log("DIALOGUE: ", dialogue);
-
     const observer_dialogue = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log("dialogue: ", dialogue);
+            diapositiva_actual = entry.target.id-1;
+            console.log("diapo: ", diapositiva_actual);
             dialogue.classList.add("visible");
           }else{
             dialogue.classList.remove("visible");
@@ -138,7 +139,7 @@
         });
       },
       {
-        threshold: 0.10, // La sección debe estar al menos un 50% visible para activarse
+        threshold: 0.90, // La sección debe estar al menos un 50% visible para activarse
       }
     );
 
@@ -162,7 +163,7 @@
   </section>
 
   <section class="page">
-    <img src="/images/detective_ground.png" alt="snape" style="max-height:50vh"/>
+    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
       <p>Vos debés ser el compañero que me asignaron en mi búsqueda de Banksy ¡Al fin llegas! Vamos, hay mucho en lo que tenés que ponerte al día.</p>
     </div>  
@@ -170,7 +171,7 @@
   </section>
 
   <section class="page">
-    <img src="/images/detective_ground.png" alt="snape" style="max-height:50vh"/>
+    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
       <p>Banksy es un enigmático artista callejero británico, conocido por su arte provocador, crítico social y políticamente cargado, que combina ironía, sátira y mensajes contundentes. Aunque su verdadera identidad sigue siendo un misterio, Banksy ha ganado reconocimiento global como uno de los artistas más influyentes del mundo contemporáneo.</p>
     </div>  
@@ -178,7 +179,7 @@
   </section>
 
   <section class="page">
-    <img src="/images/detective_ground.png" alt="snape" style="max-height:50vh"/>
+    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
       <p>Nuestra misión es tratar de descrubrir quién es y desenmascararlo. Para eso, vamos a seguir su rastro a través del mundo, pasando por sus obras más emblemáticas. Veamos que podemos descubrir sobre él.</p>
     </div>  
@@ -186,7 +187,7 @@
   </section>
 
   <section class="page">
-    <img src="/images/detective_ground.png" alt="snape" style="max-height:50vh"/>
+    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
       <p>¡Vamos, no perdamos más tiempo!</p>
     </div>  
@@ -195,8 +196,8 @@
 
   <div id="my-wrapper">
     <div class="detective_dialogue">
-      <img src="/images/detective_round.png" alt="detective" style="width:20%"/>
-      <p>Carlos Saul Menem</p>
+      <img src="/images/detective_round.png" alt="detective" style="width:12.5%"/>
+      <p>{textos_detective[diapositiva_actual]}</p>
     </div>
 
     <div class="flourish-embed" data-src="story/2739950" data-url="https://flo.uri.sh/story/2739950/embed" data-height="100vh">
@@ -208,7 +209,7 @@
         <p>{textos_detective[index*2]}</p>
       </a>
 
-      <a class="card obra" href={"#story/2739950/slide-" + (index*2 + 2)} style="width:{window.innerWidth*0.5}px">
+      <a class="card obra" href={"#story/2739950/slide-" + (index*2 + 2)} style="width:{window.innerWidth*0.5}px" id="{index*2+2}">
         <h3 style="position:relative">{obra.Titulo}</h3>
         <div class="obra_info">
           <div class="codificacion">
@@ -223,6 +224,10 @@
         </div>
       </a>
     {/each}
+    <a class="card detective_speech" href="#story/2739950/slide-{textos_detective.length}" style="width:{window.innerWidth*0.5}px">
+      <img src="/images/detective_round.png" alt="detective" style="width:20%"/>
+      <p>{textos_detective[textos_detective.length-1]}</p>
+    </a>
   </div>
 
   <section class="page">
@@ -246,17 +251,22 @@
   }
 
   .detective_dialogue {
+
+    width: 610px;
     background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     display: flex;
     flex-direction: row;
     left:30px;
     top:20px;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: flex-start;
     z-index:3;
-    width:30%;
     opacity: 0;
     transition: opacity 1s ease;
+    padding: 10px;
+    gap: 15px;
+    border-radius: 20px;
   }
 
   #my-wrapper {
@@ -291,7 +301,7 @@
 
   .detective_speech {
     flex-direction: row;
-    gap: 30px
+    gap: 30px;
   }
 
   .obra {
