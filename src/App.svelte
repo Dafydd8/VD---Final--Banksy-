@@ -81,14 +81,12 @@
 
     if (newPage !== currentPage) {
       currentPage = newPage;
-      console.log("Voy a ir a:", currentPage);
       scrollToPage(currentPage);
     }
   };
 
   const scrollToPage = (page) => {
     isScrolling = true; // Bloquear más scrolls
-    /*window.removeEventListener("wheel", handleWheel);*/
     window.scrollTo({
       top: page * window.innerHeight,
       behavior: "instant",
@@ -96,7 +94,6 @@
     // Liberar bloqueo después de la animación (duración típica de `smooth`)
     setTimeout(() => {
       isScrolling = false;
-      /*window.addEventListener("wheel", handleWheel);*/
     }, 500);
   };
 
@@ -111,23 +108,42 @@
       });
     },
     {
-      threshold: 0.1, // La sección debe estar al menos un 10% visible para activarse
+      threshold: 0.10, // La sección debe estar al menos un 10% visible para activarse
     }
   );
-
 
   onMount(() => {
     console.log("Página cargada");
     loadFlourishScrolly()
 
     window.addEventListener("wheel", handleWheel);
-    
-    
 
     // Selecciona todas las secciones con la clase 'fade-in'
-    const elements = document.querySelectorAll(".page");
-    console.log(elements);
-    elements.forEach((el) => observer.observe(el));
+    const pages = document.querySelectorAll(".page");
+    pages.forEach((el) => observer.observe(el));
+
+    const cards_obras = document.querySelectorAll(".obra");
+    const dialogue = (document.querySelectorAll(".detective_dialogue"))[0];
+    console.log("DIALOGUE: ", dialogue);
+
+    const observer_dialogue = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log("dialogue: ", dialogue);
+            dialogue.classList.add("visible");
+          }else{
+            dialogue.classList.remove("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.50, // La sección debe estar al menos un 50% visible para activarse
+      }
+    );
+
+    cards_obras.forEach((el) => observer_dialogue.observe(el));
+
 
     return () => {
       elements.forEach((el) => observer.unobserve(el));
@@ -135,6 +151,7 @@
     };
 
   });
+
 </script>
 
 <main>
@@ -177,13 +194,21 @@
   </section>
 
   <div id="my-wrapper">
+    <div class="detective_dialogue">
+      <img src="/images/detective_round.png" alt="detective" style="width:20%"/>
+    </div>
+
     <div class="flourish-embed" data-src="story/2739950" data-url="https://flo.uri.sh/story/2739950/embed" data-height="100vh">
 
     </div>
     {#each main_obras as obra, index}
-      <a class="card" href={"#story/2739950/slide-" + (index + 1)} style="width:{window.innerWidth*0.5}px">
+      <a class="card detective_speech" href={"#story/2739950/slide-" + (index*2 + 1)} style="width:{window.innerWidth*0.5}px">
+        <img src="/images/detective_round.png" alt="detective" style="width:20%"/>
+        <p>{textos_detective[index*2]}</p>
+      </a>
+
+      <a class="card obra" href={"#story/2739950/slide-" + (index*2 + 2)} style="width:{window.innerWidth*0.5}px">
         <h3 style="position:relative">{obra.Titulo}</h3>
-        
         <div class="obra_info">
           <div class="codificacion">
             <img src="/images/{tematicas[obra.Tematica]}" alt="{obra.Tematica}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
@@ -196,7 +221,6 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
       </a>
-      
     {/each}
   </div>
 
@@ -216,6 +240,19 @@
     align-items: center;
     gap: 30px;
     scroll-snap-align: start; /* Para suavizar la navegación si el usuario hace scroll manual */
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  .detective_dialogue {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    left:30px;
+    top:20px;
+    justify-content: space-evenly;
+    z-index:3;
+    width:30%;
     opacity: 0;
     transition: opacity 1s ease;
   }
@@ -240,7 +277,6 @@
     height: 50%;
     position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
@@ -249,6 +285,15 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
+  }
+
+  .detective_speech {
+    flex-direction: row;
+    gap: 30px
+  }
+
+  .obra {
+    flex-direction: column;
   }
 
   .card p {
