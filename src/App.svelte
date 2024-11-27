@@ -53,7 +53,7 @@
   }
 
   let currentPage = 0; // Índice de la página actual
-  const totalPages = 3; // Número total de páginas
+  const totalPages = 5; // Número total de páginas
   let isScrolling = false; // Evita desplazamientos repetidos mientras la animación está en curso
 
   const handleWheel = (event) => {
@@ -131,17 +131,33 @@
   </section>
 
   <section class="page">
-    <img src="/images/snape.png" alt="snape" style="max-height:50vh"/>
+    <img src="/images/detective_ground.png" alt="snape" style="max-height:50vh"/>
     <div class="text-container">
-      <p>Qué onda maestro? Soy el moderfokin Sneip y vamo a buscar a Banksy</p>
+      <p>Vos debés ser el compañero que me asignaron en mi búsqueda de Banksy ¡Al fin llegas! Vamos, hay mucho en lo que tenés que ponerte al día.</p>
     </div>  
     <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
   </section>
 
   <section class="page">
-    <img src="/images/snape.png" alt="snape" style="max-height:50vh"/>
+    <img src="/images/detective_ground.png" alt="snape" style="max-height:50vh"/>
     <div class="text-container">
-      <p>jujuuuu</p>
+      <p>Banksy es un enigmático artista callejero británico, conocido por su arte provocador, crítico social y políticamente cargado, que combina ironía, sátira y mensajes contundentes. Aunque su verdadera identidad sigue siendo un misterio, Banksy ha ganado reconocimiento global como uno de los artistas más influyentes del mundo contemporáneo.</p>
+    </div>  
+    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
+  </section>
+
+  <section class="page">
+    <img src="/images/detective_ground.png" alt="snape" style="max-height:50vh"/>
+    <div class="text-container">
+      <p>Nuestra misión es tratar de descrubrir quién es y desenmascararlo. Para eso, vamos a seguir su rastro a través del mundo, a ver que podemos descubrir sobre él.</p>
+    </div>  
+    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
+  </section>
+
+  <section class="page">
+    <img src="/images/detective_ground.png" alt="snape" style="max-height:50vh"/>
+    <div class="text-container">
+      <p>¡Vamos, no perdamos más tiempo!</p>
     </div>  
     <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
   </section>
@@ -184,6 +200,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 30px;
     scroll-snap-align: start; /* Para suavizar la navegación si el usuario hace scroll manual */
     opacity: 0;
     transition: opacity 1s ease;
@@ -263,6 +280,7 @@
   .text-container {
     position: relative;
     background-color: rgba(100, 100, 100, 0.5);
+    max-width: 50%;
     padding: 20px;
     border-radius: 20px;
   }
