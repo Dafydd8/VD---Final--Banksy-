@@ -17,6 +17,9 @@
   };
 
   const main_obras = processCSV(main_obras_raw);
+  const main_obras1 = main_obras.slice(0, 5);
+  const main_obras2 = main_obras.slice(5, 10);
+
   const obras = processCSV(obras_raw);
   
   const valores = [];
@@ -25,8 +28,8 @@
   }
 
   const tematicas = {
-    "Violencia": "globo.png",
-    "Justicia social": "ramo.png",
+    "Violencia": "ramo.png",
+    "Justicia social": "globo.png",
     "Política": "monito.png",
     "Capitalismo": "rata.png",
     "Medio ambiente": "flor.png",
@@ -157,7 +160,7 @@
 
 <main>
   <section id="header" class="page">
-    <h1 id="main_title">Finding Banksy</h1>
+    <h1 id="main_title" style="font-size:80px">Finding Banksy</h1>
     <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
 
   </section>
@@ -194,27 +197,39 @@
     <img src="/images/cheat_sheet.png" alt="cheat sheet" style="max-height:65vh"/>
   </section>
 
-  <section class="page" style="flex-direction:column">
+  <section class="page" style="flex-direction:column; gap:0px !important">
     <div id="primer_dialogo" style="width:fit-content">
       <img src="/images/detective_round.png" alt="detective" style="width:80px"/>
       <p>Estas son las obras que vamos a visitar en nuestra búsqueda.</p>
     </div>
     <div class="grid_obras">
-      {#each main_obras as obra, index}
-        <div class="obra_beggining" style="width:auto">
-          <div class="codificacion" style="width:100% !important">
+      {#each main_obras1 as obra, index}
+        <div class="obra_beggining" style="width:20%">
+          <div class="codificacion" style="width:70% !important">
             <img src="/images/{tematicas[obra.Motivo]}" alt="{obra.Motivo}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
             <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
             {#if obra.Estado == "Removida"}
               <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
             {/if}
           </div>
-          <h3 style="position:relative; font-size:15px; text-align:center">{obra.Titulo}</h3>
+          <h3 style="position:relative; font-size:20px; text-align:center">{obra.Titulo}</h3>
         </div>
       {/each}
     </div>
-
-    
+    <div class="grid_obras">
+      {#each main_obras2 as obra, index}
+        <div class="obra_beggining" style="width:20%">
+          <div class="codificacion" style="width:70% !important">
+            <img src="/images/{tematicas[obra.Motivo]}" alt="{obra.Motivo}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
+            <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
+            {#if obra.Estado == "Removida"}
+              <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
+            {/if}
+          </div>
+          <h3 style="position:relative; font-size:20px; text-align:center">{obra.Titulo}</h3>
+        </div>
+      {/each}
+    </div>
   </section>
 
   <section class="page">
@@ -322,11 +337,13 @@
     flex-direction: row;
     gap:30px;
     max-width: 90vw;
+    height: fit-content;
   }
   .obra_beggining {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
   }
 
   #my-wrapper {
@@ -436,9 +453,14 @@
   }
 
   
-  h1, h3{
+  h1 {
     color: #ffffff;
     font-family: 'PaintCans', sans-serif;
+  }
+  
+  h3{
+    color: #ffffff;
+    font-family: 'Captions', sans-serif;
   }
 
   p {

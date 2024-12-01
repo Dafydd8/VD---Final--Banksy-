@@ -40,3 +40,17 @@ body {
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'MagikMarker';
+    src: url('/fonts/MagikMarker.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Captions';
+    src: url('/fonts/Captions.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
