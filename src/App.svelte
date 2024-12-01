@@ -43,7 +43,7 @@
   }
 
   const textos_detective = [
-    "Empecemos nuestra búsqueda. En este mapa podés ver todas las obras de Banksy de las que tenemos registro.",
+    "Empecemos nuestra búsqueda, que será extensa pero valdrá la pena! Este mapa lo fui armando a través de los años, donde podés ver todas las obras de Banksy de las que tenemos registro hasta hoy en día. ¡Son más de 115!",
     "Las primeras obras de Banksy se encuentran en la que suponemos es su ciudad natal, Bristol.",
     "Mmm... no encontramos nada muy revelador... sigamos nuestro viaje. Veamos otro de los lugares que mas frecuenta Banksy a la hora de pintar.",
     "A nuestro artista misterioso le gusta Nueva York. Es la ciudad por excelencia para criticar al capitalismo salvaje.",
@@ -195,12 +195,13 @@
       <p>Te voy a mostrar la codificación secreta que desarrollé para la información que voy recopilando sobre las obras.</p>
     </div>
     <img src="/images/cheat_sheet.png" alt="cheat sheet" style="max-height:65vh"/>
+    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
   </section>
 
   <section class="page" style="flex-direction:column; gap:0px !important">
     <div id="primer_dialogo" style="width:fit-content">
       <img src="/images/detective_round.png" alt="detective" style="width:80px"/>
-      <p>Estas son las obras que vamos a visitar en nuestra búsqueda.</p>
+      <p>Estas son las obras que vamos a visitar en nuestra búsqueda, así que intenta memorizarlas lo más que puedas para poder seguir el ritmo de la investigación y emprendemos nuestra aventura. </p>
     </div>
     <div class="grid_obras">
       {#each main_obras1 as obra, index}
@@ -230,15 +231,18 @@
         </div>
       {/each}
     </div>
+    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
   </section>
 
+<!--
   <section class="page">
-    <img src="/images/inv_pose.png" alt="detctive" style="max-height:50vh"/>
+    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
       <p>¡Vamos, no perdamos más tiempo!</p>
     </div>  
     <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
   </section>
+  -->
 
   <div id="my-wrapper">
 <!-- 
@@ -267,7 +271,7 @@
             {/if}
           </div>
           <div style="width:75%">
-            <h3 style="position:relative; font-size:20px; text-align:center">{obra.Titulo}</h3>
+            <h3 style="position:relative; font-size:30px; text-align:center">{obra.Titulo}</h3>
           </div>
         </div>
         <img src="{obra.Imagen}" alt="imagen obra" class="obra_imagen" style="width:100%; border-radius:20px"/>
@@ -322,7 +326,13 @@
     opacity: 0; 
     transition: opacity 1s ease;
   }
+  
   #primer_dialogo {
+    position:absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
     background-color: rgba(58, 58, 75, 1);
     display: flex;
     flex-direction: row;
@@ -331,6 +341,7 @@
     padding: 10px;
     gap: 15px;
     border-radius: 20px;
+    z-index: 100;
   }
 
   .grid_obras {
@@ -416,7 +427,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    
   }
 
   .tematica {
@@ -446,7 +456,7 @@
 
   .flechas {
     position: absolute;
-    bottom: 5%;
+    bottom: 7%;
     width: 5%;
     animation: flash 1s ease infinite alternate;
   }
