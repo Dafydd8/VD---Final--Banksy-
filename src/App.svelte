@@ -160,7 +160,7 @@
 
 <main>
   <section id="header" class="page">
-    <h1 id="main_title" style="font-size:80px">Finding Banksy</h1>
+    <h1 id="main_title" style="font-size:100px">Finding Banksy</h1>
     <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
 
   </section>
@@ -241,10 +241,12 @@
   </section>
 
   <div id="my-wrapper">
-    <div class="detective_dialogue">
-      <img src="/images/detective_round.png" alt="detective" style="width:12.5%"/>
-      <p>{textos_detective[diapositiva_actual]}</p>
-    </div>
+<!-- 
+  <div class="detective_dialogue">
+    <img src="/images/detective_round.png" alt="detective" style="width:12.5%"/>
+    <p>{textos_detective[diapositiva_actual]}</p>
+  </div>
+    -->
 
     <div class="flourish-embed" data-src="story/2739950" data-url="https://flo.uri.sh/story/2739950/embed" data-height="100vh">
 
@@ -454,6 +456,7 @@
 
   h1 {
     color: #ffffff;
+    font-weight: 700;
     font-family: "Lacquer", system-ui;
   }
   
