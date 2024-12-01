@@ -166,15 +166,15 @@
   </section>
 
   <section class="page">
-    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
+    <img src="/images/inv_pointing.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
-      <p>Vos debés ser el compañero que me asignaron en mi búsqueda de Banksy ¡Al fin llegas! Vamos, hay mucho en lo que tenés que ponerte al día.</p>
+      <p>¡Ey! Vos debés ser el compañero que me asignaron en mi búsqueda de Banksy ¡Al fin llegas! Vamos, hay mucho en lo que tenés que ponerte al día.</p>
     </div>  
     <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
   </section>
 
   <section class="page">
-    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
+    <img src="/images/inv_actually.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
       <p>Banksy es un enigmático artista callejero británico, conocido por su arte provocador, crítico social y políticamente cargado, que combina ironía, sátira y mensajes contundentes. Aunque su verdadera identidad sigue siendo un misterio, Banksy ha ganado reconocimiento global como uno de los artistas más influyentes del mundo contemporáneo.</p>
     </div>  
@@ -182,7 +182,7 @@
   </section>
 
   <section class="page">
-    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
+    <img src="/images/inv_lupa.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
       <p>Nuestra misión es tratar de descrubrir quién es y desenmascararlo. Para eso, vamos a seguir su rastro a través del mundo, pasando por sus obras más emblemáticas. Veamos que podemos descubrir sobre él.</p>
     </div>  
@@ -212,7 +212,7 @@
               <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
             {/if}
           </div>
-          <h3 style="position:relative; font-size:20px; text-align:center">{obra.Titulo}</h3>
+          <h3 style="position:relative; text-align:center">{obra.Titulo}</h3>
         </div>
       {/each}
     </div>
@@ -226,14 +226,14 @@
               <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
             {/if}
           </div>
-          <h3 style="position:relative; font-size:20px; text-align:center">{obra.Titulo}</h3>
+          <h3 style="position:relative; text-align:center">{obra.Titulo}</h3>
         </div>
       {/each}
     </div>
   </section>
 
   <section class="page">
-    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
+    <img src="/images/inv_pose.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
       <p>¡Vamos, no perdamos más tiempo!</p>
     </div>  
@@ -292,7 +292,7 @@
 <style>
   .page {
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -452,15 +452,15 @@
     to { opacity: 0.1; }
   }
 
-  
   h1 {
     color: #ffffff;
-    font-family: 'PaintCans', sans-serif;
+    font-family: "Lacquer", system-ui;
   }
   
   h3{
     color: #ffffff;
-    font-family: 'Captions', sans-serif;
+    font-family: 'Lacquer', sans-serif;
+    font-size: 20px;
   }
 
   p {
