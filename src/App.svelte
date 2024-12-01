@@ -25,11 +25,11 @@
   }
 
   const tematicas = {
-    "Violencia": "globo_ok.png",
+    "Violencia": "globo.png",
     "Justicia social": "ramo.png",
     "Política": "monito.png",
-    "Capitalismo": "rata_ok.png",
-    "Medio ambiente": "flor_ok.png",
+    "Capitalismo": "rata.png",
+    "Medio ambiente": "flor.png",
   }
 
   const tecnicas = {
