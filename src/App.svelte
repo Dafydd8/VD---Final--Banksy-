@@ -335,17 +335,19 @@
 
   .grid_obras {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
     flex-direction: row;
-    gap:30px;
     max-width: 90vw;
     height: fit-content;
   }
+
   .obra_beggining {
+    margin-top: 10px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
   #my-wrapper {
@@ -461,6 +463,14 @@
   }
   
   h3{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    min-height: 3em;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #ffffff;
     font-family: 'Lacquer', sans-serif;
     font-size: 20px;
