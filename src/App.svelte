@@ -90,9 +90,10 @@
     console.log("Página cargada");
     loadFlourishScrolly()
 
-    const totalPages = 7; // Número total de páginas
-    let currentPage = Math.min(Math.round(window.scrollY/window.innerHeight), totalPages - 1);
-    console.log("CURRENT PAGE", currentPage);
+    const totalPages = 6; // Número total de páginas
+    let currentPage = Math.min(Math.floor(document.documentElement.scrollTop / window.innerHeight), totalPages - 1);
+
+    console.log("pos", currentPage);
     let isScrolling = false; // Evita desplazamientos repetidos mientras la animación está en curso
 
     const handleWheel = (event) => {
@@ -190,23 +191,23 @@
   </section>
 
   <section class="page" style="flex-direction:column">
-    <div id="primer_dialogo" style="width:fit-content">
+    <div id="primer_dialogo" style="width:fit-content;">
       <img src="/images/detective_round.png" alt="detective" style="width:80px"/>
       <p>Te voy a mostrar la codificación secreta que desarrollé para la información que voy recopilando sobre las obras.</p>
     </div>
     <img src="/images/cheat_sheet.png" alt="cheat sheet" style="max-height:65vh"/>
-    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
+    <!---<img src="/images/down_arrows.png" alt="flechas" class="flechas"/>--->
   </section>
 
   <section class="page" style="flex-direction:column; gap:0px !important">
     <div id="primer_dialogo" style="width:fit-content">
       <img src="/images/detective_round.png" alt="detective" style="width:80px"/>
-      <p>Estas son las obras que vamos a visitar en nuestra búsqueda, así que intenta memorizarlas lo más que puedas para poder seguir el ritmo de la investigación y emprendemos nuestra aventura. </p>
+      <p>Estas son las obras que vamos a visitar en nuestra búsqueda. Intenta memorizarlas lo más que puedas para poder seguir el ritmo de la investigación. ¡Emprendamos nuestra aventura! </p>
     </div>
     <div class="grid_obras">
       {#each main_obras1 as obra, index}
         <div class="obra_beggining" style="width:20%">
-          <div class="codificacion" style="width:70% !important">
+          <div class="codificacion" style="width:60% !important">
             <img src="/images/{tematicas[obra.Motivo]}" alt="{obra.Motivo}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
             <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
             {#if obra.Estado == "Removida"}
@@ -220,7 +221,7 @@
     <div class="grid_obras">
       {#each main_obras2 as obra, index}
         <div class="obra_beggining" style="width:20%">
-          <div class="codificacion" style="width:70% !important">
+          <div class="codificacion" style="width:60% !important">
             <img src="/images/{tematicas[obra.Motivo]}" alt="{obra.Motivo}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
             <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
             {#if obra.Estado == "Removida"}
@@ -231,7 +232,7 @@
         </div>
       {/each}
     </div>
-    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
+    <!---<img src="/images/down_arrows.png" alt="flechas" class="flechas"/>-->
   </section>
 
 <!--
@@ -328,11 +329,8 @@
   }
   
   #primer_dialogo {
-    position:absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 10px;
+    max-width: 90vw;
+    position:relative;
     background-color: rgba(58, 58, 75, 1);
     display: flex;
     flex-direction: row;
