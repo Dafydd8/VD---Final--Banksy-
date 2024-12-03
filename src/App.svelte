@@ -202,7 +202,7 @@
   <section class="page" style="flex-direction:column; gap:0px !important">
     <div id="primer_dialogo" style="width:fit-content">
       <img src="/images/detective_round.png" alt="detective" style="width:80px"/>
-      <p>Estas son las obras que vamos a visitar en nuestra búsqueda. Intenta memorizarlas lo más que puedas para poder seguir el ritmo de la investigación. ¡Emprendamos nuestra aventura! </p>
+      <p>Estas son las obras que vamos a visitar en nuestra búsqueda. Intentá memorizarlas lo más que puedas para poder seguir el ritmo de la investigación. ¡Emprendamos nuestra aventura! </p>
     </div>
     <div class="grid_obras">
       {#each main_obras1 as obra, index}
