@@ -201,7 +201,7 @@
             <img src="/images/{tematicas[obra.Motivo]}" alt="{obra.Motivo}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
             <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
             {#if obra.Estado == "Removida"}
-              <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
+              <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:50%"/>
             {/if}
           </div>
           <h3 style="position:relative; text-align:center">{obra.Titulo}</h3>
@@ -215,7 +215,7 @@
             <img src="/images/{tematicas[obra.Motivo]}" alt="{obra.Motivo}" class="tematica {obra.Estado == 'Vandalizada' ? 'vandalizada' : ''}" />
             <img src="/images/{Math.round(cant_splash(parseInt(obra.Valor)))}_{tecnicas[obra.Tecnica]}.png" alt="{obra.Tecnica}" class="tecnica" />
             {#if obra.Estado == "Removida"}
-              <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:30%"/>
+              <img src="/images/cruz.png" alt="Removida" style="position:absolute; z-index:2; width:50%"/>
             {/if}
           </div>
           <h3 style="position:relative; text-align:center">{obra.Titulo}</h3>
