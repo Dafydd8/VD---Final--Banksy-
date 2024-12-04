@@ -375,7 +375,7 @@
     flex-direction: row;
     gap: 30px;
     justify-content: flex-start;
-    align-items: self-start;
+    align-items: center;
   }
 
   .obra {
@@ -385,7 +385,7 @@
   .card p {
     position: relative;
     max-width: 70%;
-    text-align: justify;
+    text-align: left; 
   }
 
   .codificacion {
