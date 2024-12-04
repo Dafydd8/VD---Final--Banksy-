@@ -42,7 +42,7 @@
     "Instalación": "green"
   }
 
-  const textos_detective = [
+  const textos_detective_obras = [
     "Empecemos nuestra búsqueda! Este mapa lo fui armando a través de los años. En él podés ver todas las obras de Banksy de las que tenemos registro hasta hoy en día. ¡Son más de 115!",
     "Mmm... no encontramos nada muy revelador... sigamos nuestro viaje. Veamos otro de los lugares que mas frecuenta Banksy a la hora de pintar.",
     "Acá tampoco había nada. Volvamos a Inglaterra, su país natal. ¡Seguro vamos a encontrarlo!",
@@ -55,6 +55,10 @@
     "Increíble, es realmente bueno escondiéndose. Tranquilo, aún nos queda un lugar más donde buscar.",
     "No puedo creerlo, realmente no pudimos descubrirlo. Creo que la identidad de Banksy permanecerá en secreto por mucho tiempo más. Mientras tanto, podés seguir recorriendo el mapa y aprendiendo sobre su arte."
   ]
+
+  const textos_detective_graficos = [
+    
+  ];
 
   let diapositiva_actual = 1;
   //console.log("VALORES ", d3.min(valores), d3.max(valores));
@@ -259,7 +263,7 @@
     {#each main_obras as obra, index}
       <a class="card detective_speech" href={"#story/2739950/slide-" + (index*3 + 1)}>
         <img src="/images/detective_round.png" alt="detective" style="width:30%"/>
-        <p>{textos_detective[index]}</p>
+        <p>{textos_detective_obras[index]}</p>
       </a>
 
       <a class="card obra" href={"#story/2739950/slide-" + (index*3 + 2)} id="{index*2+2}">
@@ -284,15 +288,22 @@
       </a>
 
     {/each}
-    <a class="card detective_speech" href="#story/2739950/slide-{(textos_detective.length-1)*3/2+1}">
+    <a class="card detective_speech" href="#story/2739950/slide-{(textos_detective_obras.length-1)*3/2+1}">
       <img src="/images/detective_round.png" alt="detective" style="width:30%"/>
-      <p>{textos_detective[textos_detective.length-1]}</p>
+      <p>{textos_detective_obras[textos_detective_obras.length-1]}</p>
     </a>
   </div>
 
   <section class="page">
-    <h1>THE END</h1>
+    <img src="/images/inv_pointing.png" alt="detctive" style="max-height:50vh"/>
+    <div class="text-container">
+      <p>Hasta acá llega nuestra aventura buscando y aprendiendo sobre Banksy. Gracias por acompañarme ¡espero que la hayas disfrutado!</p>
+    </div>
+    <div id="footer">
+      <p>Developed by:</p>
+    </div>
   </section>
+
 
 </main>
 
@@ -487,6 +498,18 @@
   p {
     color: #ffffff;
     font-family: 'Nunito', sans-serif;
+  }
+
+  #footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
   }
 
 </style>
