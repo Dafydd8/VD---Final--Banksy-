@@ -281,7 +281,6 @@
       <p>Hasta acá llega nuestra aventura. Gracias por acompañarme ¡Espero que la hayas disfrutado!</p>
     </div>
     <div id="footer">
-      <p style="position:absolute; left:10%">Developed by:</p>
       <p>Felicitas Astrada</p>
       <a href="https://github.com/felicitasastrada" ><img src="/images/git_feli.png" alt="git logo" style="width:75px"/></a>
       <a href="https://www.linkedin.com/in/felicitas-astrada-7040a3207/"><img src="/images/linkedin_feli.png" alt="linkedin logo" style="width:75px"/></a>
