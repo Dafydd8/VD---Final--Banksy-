@@ -297,10 +297,16 @@
   <section class="page">
     <img src="/images/inv_pointing.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
-      <p>Hasta acá llega nuestra aventura buscando y aprendiendo sobre Banksy. Gracias por acompañarme ¡espero que la hayas disfrutado!</p>
+      <p>Hasta acá llega nuestra aventura buscando y aprendiendo sobre Banksy. Gracias por acompañarme ¡Espero que la hayas disfrutado!</p>
     </div>
     <div id="footer">
-      <p>Developed by:</p>
+      <p style="position:absolute; left:10%">Developed by:</p>
+      <p>Felicitas Astrada</p>
+      <a href="https://github.com/felicitasastrada" ><img src="/images/git_feli.png" alt="git logo" style="width:75px"/></a>
+      <a href="https://www.linkedin.com/in/felicitas-astrada-7040a3207/"><img src="/images/linkedin_feli.png" alt="linkedin logo" style="width:75px"/></a>
+      <p>Dafydd Jenkins</p>
+      <a href="https://github.com/Dafydd8"><img src="/images/git_daf.png" alt="git logo" style="width:75px"/></a>
+      <a href="https://www.linkedin.com/in/dafydd-jenkins-7b696b331/"><img src="/images/linkedin_daf.png" alt="linkedin logo" style="width:75px"/></a>
     </div>
   </section>
 
@@ -505,11 +511,12 @@
     bottom: 0;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 10px;
+    padding: 0px;
+    background-color: #3A3A4B;
   }
 
 </style>
