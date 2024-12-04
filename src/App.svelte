@@ -53,11 +53,17 @@
     "Está siendo más difícil de lo que pensaba...",
     "¡Ahora viene una de mis preferidas!",
     "Increíble, es realmente bueno escondiéndose. Tranquilo, aún nos queda un lugar más donde buscar.",
-    "No puedo creerlo, realmente no pudimos descubrirlo. Creo que la identidad de Banksy permanecerá en secreto por mucho tiempo más. Mientras tanto, podés seguir recorriendo el mapa y aprendiendo sobre su arte."
+    "No puedo creerlo, realmente no pudimos descubrirlo. Creo que la identidad de Banksy permanecerá en secreto por mucho tiempo más.\n\n  Yo ya me retiro, pero recordá que el mapa es interactivo, por lo que podés tomarte todo el tiempo que quieras para investigar. Además, si querés saber más sobre las obras, te dejo algunos gráficos que sintetizan información que recopilamos. ¡Hasta la próxima!"
   ]
 
   const textos_detective_graficos = [
-    
+    ["Todas las obras", "Diversidad en las técnicas"],
+    ["Agrupación por temática", "¿Cuáles temáticas inspiran más a Banksy?"],
+    ["Agrupación por estado de la obra", "Menos de la mitad de las obras están en buen estado."],
+    ["Distribución global de las obras", "Cómo es la huella artística que Banksy dejó en el mundo."],
+    ["Temática vs continente", "Banksy llevando los mensajes a donde son necesarios."],
+    ["Estado de las obras por país", "¿Cuáles países aceptan más las intervenciones de Banksy?"],
+    ["Estado de las obras por temática", "Las obras que más critican al sistema (capitalismo y violencia) son las menos aceptadas."]
   ];
 
   let diapositiva_actual = 1;
@@ -239,16 +245,6 @@
     <!---<img src="/images/down_arrows.png" alt="flechas" class="flechas"/>-->
   </section>
 
-<!--
-  <section class="page">
-    <img src="/images/detective_ground.png" alt="detctive" style="max-height:50vh"/>
-    <div class="text-container">
-      <p>¡Vamos, no perdamos más tiempo!</p>
-    </div>  
-    <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
-  </section>
-  -->
-
   <div id="my-wrapper">
 <!-- 
   <div class="detective_dialogue">
@@ -257,7 +253,7 @@
   </div>
     -->
 
-    <div class="flourish-embed" data-src="story/2739950" data-url="https://flo.uri.sh/story/2739950/embed" data-height="100vh">
+    <div class="flourish-embed" data-src="story/2739950" data-url="https://flo.uri.sh/story/2739950/embed" data-height="100vh" style="width: 50vw; transform: translateX(-50%);">
 
     </div>
     {#each main_obras as obra, index}
@@ -294,6 +290,18 @@
     </a>
   </div>
 
+  <div id="my-wrapper">
+    <div class="flourish-embed" data-src="story/2753845" data-url="https://flo.uri.sh/story/2753845/embed" data-height="90vh"  style="width: 90vw;">
+
+    </div>
+    {#each textos_detective_graficos as par, index}
+      <a class="card detective_speech" href={"#story/2753845/slide-" + (index+1)} style="transform: translateX(0%);background-color:rgba(58, 58, 75, 1); padding:20px; align-items:center; gap:5px; justify-content:center; flex-direction:column; font-size:20px; max-width:450px">
+        <p style="text-align:center; font-weight:bold; font-size:20px; max-width:100%">{par[0]}</p><br>
+        <p style="text-align:center; max-width:100%">{par[1]}</p>
+      </a>
+    {/each}
+  </div>
+
   <section class="page">
     <img src="/images/inv_pointing.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
@@ -324,24 +332,6 @@
     gap: 30px;
     scroll-snap-align: start; /* Para suavizar la navegación si el usuario hace scroll manual */
     opacity: 0;
-    transition: opacity 1s ease;
-  }
-
-  .detective_dialogue {
-    width: 610px;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    left:30px;
-    top:20px;
-    align-items: center;
-    justify-content: flex-start;
-    z-index:3;
-    padding: 10px;
-    gap: 15px;
-    border-radius: 20px;
-    opacity: 0; 
     transition: opacity 1s ease;
   }
   
@@ -389,9 +379,7 @@
   }
 
   .flourish-embed {
-    margin: auto;
-    width: 50vw;
-    transform: translateX(-50%);
+    margin: 0px;
   }
 
   .card {
@@ -504,6 +492,7 @@
   p {
     color: #ffffff;
     font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
   }
 
   #footer {
