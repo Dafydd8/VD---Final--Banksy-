@@ -3,7 +3,6 @@
   import * as d3 from "d3"
   import { onMount } from "svelte"
   import { parse } from "papaparse";
-  import obras_raw from "/src/data/Datos_Banksy.csv?raw"
   import main_obras_raw from "/src/data/main_obras.csv?raw"; // Importa el archivo como texto
 
   const options = {
@@ -17,10 +16,9 @@
   };
 
   const main_obras = processCSV(main_obras_raw);
+  //subdividir las main obras en dos conjuntos para armar la grid
   const main_obras1 = main_obras.slice(0, 5);
   const main_obras2 = main_obras.slice(5, 10);
-
-  const obras = processCSV(obras_raw);
   
   const valores = [];
   for (let i = 0; i < main_obras.length; i++) {
@@ -67,7 +65,7 @@
   ];
 
   let diapositiva_actual = 1;
-  //console.log("VALORES ", d3.min(valores), d3.max(valores));
+
   let cant_splash = d3
     .scaleLinear()
     .domain([d3.min(valores), d3.max(valores)])
@@ -81,6 +79,7 @@
     document.body.appendChild(script)
   }
 
+  // Observador de intersección para efecto de fade-in de las primeras paginas
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -101,11 +100,10 @@
     loadFlourishScrolly()
 
     const totalPages = 6; // Número total de páginas
-    let currentPage = Math.min(Math.floor(document.documentElement.scrollTop / window.innerHeight), totalPages - 1);
-
-    console.log("pos", currentPage);
+    let currentPage = Math.min(Math.floor(document.documentElement.scrollTop / window.innerHeight), totalPages - 1); // Obtener la página a partir de la posición del scroll al cargar la página
     let isScrolling = false; // Evita desplazamientos repetidos mientras la animación está en curso
 
+    // Función para manejar el evento de scroll
     const handleWheel = (event) => {
       let posScroll = window.scrollY + window.innerHeight;
       if (isScrolling || posScroll > totalPages*window.innerHeight) return; // No hacer nada si ya estamos desplazando o estamos fuera de las primeras paginas
@@ -120,7 +118,8 @@
         scrollToPage(currentPage);
       }
     };
-
+    
+    // Función para desplazar la página entera ante un scroll
     const scrollToPage = (page) => {
       isScrolling = true; // Bloquear más scrolls
       window.scrollTo({
@@ -138,27 +137,6 @@
     // Selecciona todas las secciones con la clase 'fade-in'
     const pages = document.querySelectorAll(".page");
     pages.forEach((el) => observer.observe(el));
-
-    const cards_obras = document.querySelectorAll(".obra");
-    const dialogue = (document.querySelectorAll(".detective_dialogue"))[0];
-    const observer_dialogue = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            diapositiva_actual = entry.target.id-1;
-            dialogue.classList.add("visible");
-          }else{
-            dialogue.classList.remove("visible");
-          }
-        });
-      },
-      {
-        threshold: 0.90, // La sección debe estar al menos un 50% visible para activarse
-      }
-    );
-
-    cards_obras.forEach((el) => observer_dialogue.observe(el));
-
 
     return () => {
       elements.forEach((el) => observer.unobserve(el));
@@ -248,13 +226,6 @@
   </section>
 
   <div id="my-wrapper">
-<!-- 
-  <div class="detective_dialogue">
-    <img src="/images/detective_round.png" alt="detective" style="width:12.5%"/>
-    <p>{textos_detective[diapositiva_actual]}</p>
-  </div>
-    -->
-
     <div class="flourish-embed" data-src="story/2739950" data-url="https://flo.uri.sh/story/2739950/embed" data-height="100vh" style="width: 50vw; transform: translateX(-50%);">
 
     </div>
@@ -307,7 +278,7 @@
   <section class="page">
     <img src="/images/inv_pointing.png" alt="detctive" style="max-height:50vh"/>
     <div class="text-container">
-      <p>Hasta acá llega nuestra aventura buscando y aprendiendo sobre Banksy. Gracias por acompañarme ¡Espero que la hayas disfrutado!</p>
+      <p>Hasta acá llega nuestra aventura. Gracias por acompañarme ¡Espero que la hayas disfrutado!</p>
     </div>
     <div id="footer">
       <p style="position:absolute; left:10%">Developed by:</p>
