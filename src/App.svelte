@@ -368,6 +368,7 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
+    padding: 2em;
   }
 
   .detective_speech {
