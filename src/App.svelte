@@ -43,17 +43,17 @@
   }
 
   const textos_detective = [
-    "Empecemos nuestra búsqueda, que será extensa pero valdrá la pena! Este mapa lo fui armando a través de los años, donde podés ver todas las obras de Banksy de las que tenemos registro hasta hoy en día. ¡Son más de 115!",
-    "Las primeras obras de Banksy se encuentran en la que suponemos es su ciudad natal, Bristol.",
+    "Empecemos nuestra búsqueda! Este mapa lo fui armando a través de los años. En él podés ver todas las obras de Banksy de las que tenemos registro hasta hoy en día. ¡Son más de 115!",
     "Mmm... no encontramos nada muy revelador... sigamos nuestro viaje. Veamos otro de los lugares que mas frecuenta Banksy a la hora de pintar.",
-    "A nuestro artista misterioso le gusta Nueva York. Es la ciudad por excelencia para criticar al capitalismo salvaje.",
+    "Acá tampoco había nada. Volvamos a Inglaterra, su país natal. ¡Seguro vamos a encontrarlo!",
     "Nada aún... es realmente sigiloso. No perdamos más tiempo y pasemos a nuestra siguiente pista.",
-    "Estamos en Jerusalén. Banksy aboga fuertemente por la paz y Medio Oriente es foco de muchas de sus obras que hacen alusión a esta causa.",
-    "No vimos nada, pero siento que estamos cerca. ¡Nos avisan que lo han visto en Australia! ¡Rápido, que no se escape!",
-    "Llegamos a Melbourne. A ver qué descubrimos...",
+    "¡Me avisan que lo vieron en Canadá! ¡Rápido, que no se escape!",
+    "Increíble, es realmente bueno escondiéndose. Aún quedan pistas por seguir.",
+    "Uf... aún nada. ¡Pero que no decaiga! Un buen investigador nunca se rinde.",
+    "Está siendo más difícil de lo que pensaba...",
+    "¡Ahora viene una de mis preferidas!",
     "Increíble, es realmente bueno escondiéndose. Tranquilo, aún nos queda un lugar más donde buscar.",
-    "Estamos en Disneyland, California. ¡Qué lugar para una obra de este estilo! Vaya que hace llegar su mensaje",
-    "No puedo creerlo, realmente no pudimos descubrirlo. Creo que la identidad de Banksy permanecerá en secreto por mucho tiempo más. Mientras tanto, podés seguir aprendiendo sobre su arte."
+    "No puedo creerlo, realmente no pudimos descubrirlo. Creo que la identidad de Banksy permanecerá en secreto por mucho tiempo más. Mientras tanto, podés seguir recorriendo el mapa y aprendiendo sobre su arte."
   ]
 
   let diapositiva_actual = 1;
@@ -259,7 +259,7 @@
     {#each main_obras as obra, index}
       <a class="card detective_speech" href={"#story/2739950/slide-" + (index*3 + 1)}>
         <img src="/images/detective_round.png" alt="detective" style="width:30%"/>
-        <p>{textos_detective[index*2]}</p>
+        <p>{textos_detective[index]}</p>
       </a>
 
       <a class="card obra" href={"#story/2739950/slide-" + (index*3 + 2)} id="{index*2+2}">
@@ -280,7 +280,7 @@
 
       <a class="card detective_speech" href={"#story/2739950/slide-" + (index*3 + 3)}>
         <img src="/images/detective_round.png" alt="detective" style="width:30%"/>
-        <p>{textos_detective[index*2+1]} {obra.Texto}</p>
+        <p>{obra.Texto}</p>
       </a>
 
     {/each}
