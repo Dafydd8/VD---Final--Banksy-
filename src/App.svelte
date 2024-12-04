@@ -173,6 +173,8 @@
   <section id="header" class="page">
     <h1 id="main_title" style="font-size:100px">Finding Banksy</h1>
     <img src="/images/down_arrows.png" alt="flechas" class="flechas"/>
+    <img src="/images/Banksy.png" alt="Banksy" style="position:absolute; height:80vh; right:10px; bottom:0px"/>
+    <img src="/images/investigator/investigator_buscando.png" alt="Detective" style="position:absolute; height:80vh; left:10px; bottom:0px"/>
 
   </section>
 
